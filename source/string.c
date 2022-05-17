@@ -319,17 +319,47 @@ _XPOSIXAPI_ char* __xcall__ x_posix_strdup(const char* _String)
 #endif
 }
 
+// posix : strupr
+_XPOSIXAPI_ char* __xcall__ x_posix_strupr(char* _String)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	return _String ? _strupr(_String) : NULL;
+#else
+	size_t 		vSize = x_posix_strlen(_String);
+	for(size_t vPos = 0; vPos < vSize; ++vPos)
+	{
+		_String[vPos] = (char)toupper(_String[vPos]);
+	}
+	return _String;
+#endif
+}
+
+// posix : strlwr
+_XPOSIXAPI_ char* __xcall__ x_posix_strlwr(char* _String)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	return _String ? _strlwr(_String) : NULL;
+#else
+	size_t 		vSize = x_posix_strlen(_String);
+	for(size_t vPos = 0; vPos < vSize; ++vPos)
+	{
+		_String[vPos] = (char)tolower(_String[vPos]);
+	}
+	return _String;
+#endif
+}
 
 
 
 
-// posix : wstrlen
+
+// posix : wcslen
 _XPOSIXAPI_ size_t __xcall__ x_posix_wcslen(const wchar_t* _String)
 {
 	return wcslen(_String ? _String : L"");
 }
 
-// posix : wstrcmp
+// posix : wcscmp
 _XPOSIXAPI_ int __xcall__ x_posix_wcscmp(const wchar_t* _Str1, const wchar_t* _Str2)
 {
 	if (_Str1 == _Str2)
@@ -350,7 +380,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_wcscmp(const wchar_t* _Str1, const wchar_t* _S
 	}
 }
 
-// posix : wstricmp
+// posix : wcsicmp
 _XPOSIXAPI_ int __xcall__ x_posix_wcsicmp(const wchar_t* _Str1, const wchar_t* _Str2)
 {
 	if (_Str1 == _Str2)
@@ -375,13 +405,13 @@ _XPOSIXAPI_ int __xcall__ x_posix_wcsicmp(const wchar_t* _Str1, const wchar_t* _
 	}
 }
 
-// posix : wstrcasecmp
+// posix : wcscasecmp
 _XPOSIXAPI_ int __xcall__ x_posix_wcscasecmp(const wchar_t* _Str1, const wchar_t* _Str2)
 {
 	return x_posix_wcsicmp(_Str1, _Str2);
 }
 
-// posix : wstrncmp
+// posix : wcsncmp
 _XPOSIXAPI_ int __xcall__ x_posix_wcsncmp(const wchar_t* _Str1, const wchar_t* _Str2, size_t _Length)
 {
 	if (_Str1 == _Str2)
@@ -402,7 +432,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_wcsncmp(const wchar_t* _Str1, const wchar_t* _
 	}
 }
 
-// posix : wstrchr
+// posix : wcschr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcschr(const wchar_t* _Str, wchar_t _Ch)
 {
 	if(_Str == NULL || _Ch == 0)
@@ -412,7 +442,7 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcschr(const wchar_t* _Str, wchar_t
 	return wcschr(_Str, _Ch);
 }
 
-// posix : wstrichr
+// posix : wcsichr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsichr(const wchar_t* _Str, wchar_t _Ch)
 {
 	if(_Str == NULL || _Ch == 0)
@@ -427,7 +457,7 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsichr(const wchar_t* _Str, wchar_
 	return _Str;
 }
 
-// posix : wstrrchr
+// posix : wcsrchr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsrchr(const wchar_t* _Str, wchar_t _Ch)
 {
 	if(_Str == NULL || _Ch == 0)
@@ -437,7 +467,7 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsrchr(const wchar_t* _Str, wchar_
 	return wcsrchr(_Str, _Ch);
 }
 
-// posix : wstrirchr
+// posix : wcsirchr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsirchr(const wchar_t* _Str, wchar_t _Ch)
 {
 	if(_Str == NULL || _Ch == 0)
@@ -457,7 +487,7 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsirchr(const wchar_t* _Str, wchar
 	return vEnd;
 }
 
-// posix : wstrstr
+// posix : wcsstr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsstr(const wchar_t* _Str, const wchar_t* _SubStr)
 {
 	if(_Str == NULL || _SubStr == NULL)
@@ -467,7 +497,7 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsstr(const wchar_t* _Str, const w
 	return wcsstr(_Str, _SubStr);
 }
 
-// posix : wstristr
+// posix : wcsistr
 _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsistr(const wchar_t* _Str, const wchar_t* _SubStr)
 {
 	if(_Str == NULL || _SubStr == NULL)
@@ -502,37 +532,67 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wcsistr(const wchar_t* _Str, const 
 	return NULL;
 }
 
-// posix : wstrcpy
+// posix : wcscpy
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcscpy(wchar_t* _Dst, const wchar_t* _Source)
 {
 	return wcscpy(_Dst, _Source);
 }
 
-// posix : wstrncpy
+// posix : wcsncpy
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsncpy(wchar_t* _Dst, const wchar_t* _Source, size_t _Length)
 {
 	return wcsncpy(_Dst, _Source, _Length);
 }
 
-// posix : wstrcat
+// posix : wcscat
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcscat(wchar_t* _Str1, const wchar_t* _Str2)
 {
 	return wcscat(_Str1, _Str2);
 }
 
-// posix : wstrncat
+// posix : wcsncat
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsncat(wchar_t* _Str1, const wchar_t* _Str2, size_t _Length)
 {
 	return wcsncat(_Str1, _Str2, _Length);
 }
 
-// posix : wstrdup
+// posix : wcsdup
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsdup(const wchar_t* _String)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return _wcsdup(_String ? _String : L"");
 #else
 	return wcsdup(_String ? _String : L"");
+#endif
+}
+
+// posix : wcsupr
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsupr(wchar_t* _String)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	return _String ? _wcsupr(_String) : NULL;
+#else
+	size_t 		vSize = x_posix_wcslen(_String);
+	for(size_t vPos = 0; vPos < vSize; ++vPos)
+	{
+		_String[vPos] = towupper(_String[vPos]);
+	}
+	return _String;
+#endif
+}
+
+// posix : strlwr
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcslwr(wchar_t* _String)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	return _String ? _wcslwr(_String) : NULL;
+#else
+	size_t 		vSize = x_posix_wcslen(_String);
+	for(size_t vPos = 0; vPos < vSize; ++vPos)
+	{
+		_String[vPos] = towlower(_String[vPos]);
+	}
+	return _String;
 #endif
 }
 

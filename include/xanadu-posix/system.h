@@ -13,6 +13,9 @@ extern "C" {
 // posix : system
 _XPOSIXAPI_ int __xcall__ x_posix_system(const char* _Command);
 
+// posix : pause
+_XPOSIXAPI_ int __xcall__ x_posix_pause(void);
+
 
 
 

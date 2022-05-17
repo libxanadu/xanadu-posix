@@ -45,6 +45,17 @@ _XPOSIXAPI_ int __xcall__ x_posix_system(const char* _Command)
 #endif
 }
 
+// posix : pause
+_XPOSIXAPI_ int __xcall__ x_posix_pause(void)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	x_posix_system("pause");
+	return -1;
+#else
+	return pause();
+#endif
+}
+
 
 
 
