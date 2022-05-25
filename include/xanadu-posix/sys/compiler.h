@@ -3,21 +3,21 @@
 
 
 /// ********** ********** ********** ********** ********** **********
-/// 该文件主要定义了当前编译器的相关信息
+/// Information about the current compiler
 /// ********** ********** ********** ********** ********** **********
 
 
-// 编译器 : MSVC
+// Compiler : MSVC
 #if defined(_MSC_VER)
 #define 		XANADU_COMPILER_MSVC			(1)
 #endif
 
-// 编译器 : CLANG
+// Compiler : CLANG
 #if defined(__clang__)
 #define 		XANADU_COMPILER_CLANG			(1)
 #endif
 
-// 编译器 : GNUC
+// Compiler : GNUC
 #if defined(__GNUC__)
 #define 		XANADU_COMPILER_GNUC			(1)
 #endif
@@ -30,7 +30,7 @@
 
 
 
-// 编译器的导出与导入定义
+// Compiler export and import definitions
 #if defined(XANADU_COMPILER_MSVC)
 #define			XANADU_COMPILER_API_EXP			__declspec(dllexport)
 #define			XANADU_COMPILER_API_IMP			__declspec(dllimport)

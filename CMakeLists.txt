@@ -104,7 +104,6 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 # C++支持
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
 
 
 # 头文件搜索目录
@@ -119,13 +118,11 @@ if (X_SERIES_LIBRARY_TYPE STREQUAL "STATIC")
 else()
 	add_definitions(-DXANADU_POSIX_BUILD_LOCAL)
 endif()
-add_definitions(-DXANADU_EXCEPTION_OUTPUT)
 add_definitions(-DXANADU_PARAMETER_VALIDATION)
 add_definitions(-D_FILE_OFFSET_BITS=64)
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
 add_definitions(-D_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING)
-add_definitions(-DXANADU_LOG_ENABLE)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	add_definitions(-DXANADU_BUILD_DEBUG)
 else ()

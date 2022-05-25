@@ -30,7 +30,7 @@ typedef struct _private_process_find_data
 
 
 
-// xanadu系列宏定义 : signal
+// X-Series macro definition : signal
 #if !defined(SIGQUIT)
 #define SIGQUIT				3
 #endif

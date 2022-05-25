@@ -111,13 +111,18 @@ _XPOSIXAPI_ bool __xcall__ x_socket_select_status(x_socket_t _Socket, bool* _Rea
 
 
 
-// socket : 设置套接字心跳属性
+// socket : Set socket heartbeat
 _XPOSIXAPI_ int __xcall__ x_socket_set_keepalive(x_socket_t _Socket, bool _KeepAlive, int _KeepIdle, int _KeepInterval, int _KeepCount);
 
 
 
 // Translate IP address from fabric
 _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _Address);
+
+
+
+// Transfer data between two sockets
+_XPOSIXAPI_ int __xcall__ x_socket_transfer(x_socket_t _Socket1, x_socket_t _Socket2);
 
 
 #if defined(__cplusplus)

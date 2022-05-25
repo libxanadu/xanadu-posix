@@ -3,7 +3,7 @@
 
 
 /// ********** ********** ********** ********** ********** **********
-/// 该文件定义了有关目标操作系统的宏
+/// Macros for the target operating system
 /// ********** ********** ********** ********** ********** **********
 
 #include <xanadu-posix/sys/platform.h>
@@ -17,7 +17,7 @@ extern "C" {
 
 
 
-// xanadu系列宏定义 : file access
+// X-Series macro definition : file access
 #if defined(XANADU_SYSTEM_WINDOWS) && !defined(XANADU_POSIX_MACRO_FILE_ACCESS)
 #define			XANADU_POSIX_MACRO_FILE_ACCESS				(1)
 #define			R_OK							(4)			// Read-only
@@ -28,7 +28,7 @@ extern "C" {
 
 
 
-// xanadu系列宏定义 : file type
+// X-Series macro definition : file type
 #if defined(XANADU_SYSTEM_WINDOWS) && !defined(XANADU_POSIX_MACRO_FILE_TYPE)
 #define			XANADU_POSIX_MACRO_FILE_TYPE				(1)
 #define			S_IFIFO							_S_IFIFO		// named pipe (fifo)
@@ -40,7 +40,7 @@ extern "C" {
 
 
 
-// xanadu系列宏定义 : file check
+// X-Series macro definition : file check
 #if defined(XANADU_SYSTEM_WINDOWS) && !defined(XANADU_POSIX_MACRO_FILE_MODE)
 #define			XANADU_POSIX_MACRO_FILE_MODE				(1)
 
@@ -80,7 +80,7 @@ extern "C" {
 
 
 
-// xanadu系列宏定义 : file power
+// X-Series macro definition : file power
 #if defined(XANADU_SYSTEM_WINDOWS) && !defined(XANADU_POSIX_MACRO_FILE_PERMS)
 #define			XANADU_POSIX_MACRO_FILE_PERMS				(1)
 #define			S_IRWXU							0000700			// RWX mask for owner
@@ -105,24 +105,24 @@ extern "C" {
 
 
 
-// xanadu系列宏定义 : MAX_PATH
+// X-Series macro definition : MAX_PATH
 #if !defined(XANADU_SYSTEM_WINDOWS) && !defined(MAX_PATH)
 #define			MAX_PATH						260
 #endif
 
 
 
-// xanadu系列宏定义 : MAX_PATH
+// X-Series macro definition : snprintf
 #if !defined(XANADU_SYSTEM_WINDOWS) && !defined(_snprintf)
 #define			_snprintf						snprintf
 #endif
 
 
 
-// xanadu系列宏定义 : size
-#define			XANADU_SIZE_PHASE						(1024)
+// X-Series macro definition : size
+#define			XANADU_SIZE_PHASE					(1024)
 #define			XANADU_SIZE_BIT						(8)
-#define			XANADU_SIZE_BYTE						(1)
+#define			XANADU_SIZE_BYTE					(1)
 #define			XANADU_SIZE_KB						(1024ULL)
 #define			XANADU_SIZE_MB						(1048576ULL)
 #define			XANADU_SIZE_GB						(1073741824ULL)

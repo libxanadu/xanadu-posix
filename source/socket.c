@@ -1,5 +1,6 @@
 ﻿#include <xanadu-posix/socket.h>
 #include <xanadu-posix/string.h>
+#include <xanadu-posix/system.h>
 #if defined(XANADU_SYSTEM_WINDOWS)
 #include <mstcpip.h>
 #else
@@ -311,7 +312,7 @@ _XPOSIXAPI_ bool __xcall__ x_socket_select_status(x_socket_t _Socket, bool* _Rea
 
 
 
-// socket : 设置套接字心跳属性
+// socket : Set socket heartbeat
 _XPOSIXAPI_ int __xcall__ x_socket_set_keepalive(x_socket_t _Socket, bool _KeepAlive, int _KeepIdle, int _KeepInterval, int _KeepCount)
 {
 #if defined(XANADU_COMPILER_MSVC)
@@ -361,4 +362,108 @@ _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _A
 		return x_posix_strdup(vAddress);
 	}
 	return x_posix_strdup("");
+}
+
+
+
+// Transfer data between two sockets
+_XPOSIXAPI_ int __xcall__ x_socket_transfer(x_socket_t _Socket1, x_socket_t _Socket2)
+{
+	if(_Socket1 == INVALID_SOCKET || _Socket2 == INVALID_SOCKET)
+	{
+		return EINVAL;
+	}
+
+	int		vError = 0;
+	char 		vBuffer[XANADU_SIZE_KB] = {0};
+	int		vSocketMax = (int)(_Socket1 > _Socket2 ? _Socket1 : _Socket2);
+	fd_set		vReadFds;
+	fd_set 		vExceptFds;
+	struct timeval	vTimeout;
+	while(true)
+	{
+		FD_ZERO(&vReadFds);
+		FD_SET(_Socket1, &vReadFds);
+		FD_SET(_Socket2, &vReadFds);
+
+		FD_ZERO(&vExceptFds);
+		FD_SET(_Socket1, &vExceptFds);
+		FD_SET(_Socket2, &vExceptFds);
+
+		vTimeout.tv_sec = 1;
+		vTimeout.tv_usec = 0;
+
+		int		vSelect = x_socket_select(vSocketMax + 1, &vReadFds, NULL, &vExceptFds, &vTimeout);
+		if(vSelect < 0)
+		{
+			// an error occurred
+			vError = x_posix_errno();
+			break;
+		}
+		else if(vSelect == 0)
+		{
+			// Socket query timed out
+			continue;
+		}
+		else
+		{
+			// There are sockets to read
+			if (FD_ISSET(_Socket1, &vReadFds))
+			{
+				int		vReadBytes = recv(_Socket1, vBuffer, XANADU_SIZE_KB, 0);
+				if(vReadBytes < 0)
+				{
+					// Failed to receive
+					vError = x_posix_errno();
+					break;
+				}
+				else if(vReadBytes == 0)
+				{
+					// The peer socket is closed
+					break;
+				}
+				int		vSent = 0;
+				while (vSent < vReadBytes)
+				{
+					int		vSendBytes = send(_Socket2, vBuffer + vSent, vSent - vSent, 0);
+					if (vSendBytes <= 0)
+					{
+						// Failed to send
+						vError = x_posix_errno();
+						break;
+					}
+					vSent += vSendBytes;
+				}
+			}
+			if (FD_ISSET(_Socket2, &vReadFds))
+			{
+				int		vReadBytes = recv(_Socket2, vBuffer, XANADU_SIZE_KB, 0);
+				if(vReadBytes < 0)
+				{
+					// Failed to receive
+					vError = x_posix_errno();
+					break;
+				}
+				else if(vReadBytes == 0)
+				{
+					// The peer socket is closed
+					break;
+				}
+				int		vSent = 0;
+				while (vSent < vReadBytes)
+				{
+					int		vSendBytes = send(_Socket1, vBuffer + vSent, vSent - vSent, 0);
+					if (vSendBytes <= 0)
+					{
+						// Failed to send
+						vError = x_posix_errno();
+						break;
+					}
+					vSent += vSendBytes;
+				}
+			}
+		}
+	}
+
+	return vError;
 }
