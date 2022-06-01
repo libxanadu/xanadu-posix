@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 
-// xanadu系列类型定义 : x_thread_t
+// X-Series type definition : x_thread_t
 #if defined(XANADU_SYSTEM_WINDOWS)
 typedef				HANDLE				x_thread_t;
 #else

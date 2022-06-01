@@ -3,7 +3,7 @@
 
 
 
-// xanadu系列类型定义 : ntdll
+// X-Series type definition : ntdll
 typedef NTSTATUS (WINAPI *OS_NtQueryInformationProcess)(HANDLE ProcessHandle, OS_PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 typedef DWORD (WINAPI *OS_NtSuspendProcess)(HANDLE _ProcessHandle);
 typedef DWORD (WINAPI *OS_NtResumeProcess)(HANDLE _ProcessHandle);

@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 
-// xanadu系列类型定义 : x_process_stream_t
+// X-Series type definition : x_process_stream_t
 #if defined(XANADU_SYSTEM_WINDOWS)
 typedef				HANDLE 				x_process_stream_t;
 typedef				DWORD 				x_process_id_t;

@@ -31,8 +31,8 @@ typedef struct {
 #define INVALID_SOCKET		((x_socket_t)(-1))
 #define SOCKET_ERROR		(-1)
 #endif
-#define XANADU_INVALID_SOCKET	((x_socket_t)(-1))
-#define XANADU_SOCKET_ERROR	(-1)
+#define X_INVALID_SOCKET	((x_socket_t)(-1))
+#define X_SOCKET_ERROR		(-1)
 
 
 // posix : gethostbyname

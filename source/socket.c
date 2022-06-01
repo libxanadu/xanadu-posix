@@ -1,6 +1,7 @@
 ﻿#include <xanadu-posix/socket.h>
 #include <xanadu-posix/string.h>
 #include <xanadu-posix/system.h>
+#include <errno.h>
 #if defined(XANADU_SYSTEM_WINDOWS)
 #include <mstcpip.h>
 #else

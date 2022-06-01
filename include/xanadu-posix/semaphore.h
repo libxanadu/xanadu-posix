@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 
-// xanadu系列类型定义 : x_semaphore_t
+// X-Series type definition : x_semaphore_t
 #if defined(XANADU_SYSTEM_WINDOWS)
 typedef				HANDLE				x_semaphore_t;
 #else

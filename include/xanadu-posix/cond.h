@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 
-// xanadu系列类型定义 : x_cond_t
+// X-Series type definition : x_cond_t
 #if defined(XANADU_SYSTEM_WINDOWS)
 typedef				HANDLE				x_cond_t;
 #else

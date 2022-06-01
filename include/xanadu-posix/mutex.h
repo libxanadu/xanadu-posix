@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 
-// xanadu系列类型定义 : x_mutex_t
+// X-Series type definition : x_mutex_t
 #if defined(XANADU_SYSTEM_WINDOWS)
 typedef				CRITICAL_SECTION		x_mutex_t;
 #else
