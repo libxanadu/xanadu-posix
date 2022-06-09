@@ -713,7 +713,7 @@ _XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(char const* _String, char** 
 
 
 // 转换字符串至大写
-_XPOSIXAPI_ char* x_posix_strtoupper(const char* _String)
+_XPOSIXAPI_ char* __xcall__ x_posix_strtoupper(const char* _String)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_String == NULL)
@@ -731,7 +731,7 @@ _XPOSIXAPI_ char* x_posix_strtoupper(const char* _String)
 }
 
 // 转换字符串至小写
-_XPOSIXAPI_ char* x_posix_strtolower(const char* _String)
+_XPOSIXAPI_ char* __xcall__ x_posix_strtolower(const char* _String)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_String == NULL)
@@ -749,7 +749,7 @@ _XPOSIXAPI_ char* x_posix_strtolower(const char* _String)
 }
 
 // Replaces the specified character in the string
-_XPOSIXAPI_ const char* x_string_replace_char(char* _String, char _Src, char _Dest)
+_XPOSIXAPI_ const char* __xcall__ x_string_replace_char(char* _String, char _Src, char _Dest)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_String == NULL)
@@ -769,7 +769,7 @@ _XPOSIXAPI_ const char* x_string_replace_char(char* _String, char _Src, char _De
 }
 
 // Replaces the specified character in the string
-_XPOSIXAPI_ const wchar_t* x_string_replace_wchar_t(wchar_t* _String, wchar_t _Src, wchar_t _Dest)
+_XPOSIXAPI_ const wchar_t* __xcall__ x_string_replace_wchar_t(wchar_t* _String, wchar_t _Src, wchar_t _Dest)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_String == NULL)
@@ -793,7 +793,7 @@ _XPOSIXAPI_ const wchar_t* x_string_replace_wchar_t(wchar_t* _String, wchar_t _S
 
 
 /// Request the appropriate memory format string according to vsnprintf
-_XPOSIXAPI_ char* x_string_format(const char* _Format, ...)
+_XPOSIXAPI_ char* __xcall__ x_string_format(const char* _Format, ...)
 {
 	char*		vString = NULL;
 	va_list		vArgs1;
@@ -825,7 +825,7 @@ _XPOSIXAPI_ char* x_string_format(const char* _Format, ...)
 
 
 /// Convert UTF-8 to UNICODE
-_XPOSIXAPI_ int x_string_convert_utf8_to_unicode(const char* _UTF8, wchar_t* _Unicode, size_t _WLength)
+_XPOSIXAPI_ int __xcall__ x_string_convert_utf8_to_unicode(const char* _UTF8, wchar_t* _Unicode, size_t _WLength)
 {
 	if(_UTF8 == NULL)
 	{
@@ -949,7 +949,7 @@ _XPOSIXAPI_ int x_string_convert_utf8_to_unicode(const char* _UTF8, wchar_t* _Un
 }
 
 /// Convert UNICODE to UTF-8
-_XPOSIXAPI_ int x_string_convert_unicode_to_utf8(const wchar_t* _Unicode, char* _UTF8, size_t _ULength)
+_XPOSIXAPI_ int __xcall__ x_string_convert_unicode_to_utf8(const wchar_t* _Unicode, char* _UTF8, size_t _ULength)
 {
 	if(_Unicode == NULL)
 	{

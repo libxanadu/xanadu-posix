@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -57,9 +55,7 @@ _XPOSIXAPI_ DWORD __xcall__ ntdll_NtResumeProcess(HANDLE _ProcessHandle);
 
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

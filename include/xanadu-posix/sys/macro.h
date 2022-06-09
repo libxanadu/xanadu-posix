@@ -11,9 +11,7 @@
 
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -137,9 +135,7 @@ extern "C" {
 #define			XANADU_SIZE_CB						(XANADU_SIZE_PHASE * XANADU_SIZE_DB)
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

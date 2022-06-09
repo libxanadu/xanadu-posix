@@ -366,7 +366,7 @@ static size_t linux_system_output_buffer(const char* _System, char* _Buffer, siz
 
 
 // Sets the last-error code for the calling thread.
-_XPOSIXAPI_ void x_system_set_last_error(int _Error)
+_XPOSIXAPI_ void __xcall__ x_system_set_last_error(int _Error)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	SetLastError((DWORD)_Error);
@@ -375,7 +375,7 @@ _XPOSIXAPI_ void x_system_set_last_error(int _Error)
 }
 
 // Gets the last-error code for the calling thread.
-_XPOSIXAPI_ int x_system_get_last_error(void)
+_XPOSIXAPI_ int __xcall__ x_system_get_last_error(void)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	DWORD		vError = GetLastError();
@@ -392,7 +392,7 @@ _XPOSIXAPI_ int x_system_get_last_error(void)
 
 
 // Get operating system bits
-_XPOSIXAPI_ size_t x_system_os_bits(void)
+_XPOSIXAPI_ size_t __xcall__ x_system_os_bits(void)
 {
 	static size_t 	_static_system_os_bits = 0;
 
@@ -446,7 +446,7 @@ _XPOSIXAPI_ size_t x_system_os_bits(void)
 
 
 // Get the number of CPU cores
-_XPOSIXAPI_ size_t x_system_cpu_core_count(void)
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_core_count(void)
 {
 	static size_t 	_static_system_cpu_core_count = 0;
 
@@ -485,7 +485,7 @@ _XPOSIXAPI_ size_t x_system_cpu_core_count(void)
 }
 
 // Get the number of CPU threads
-_XPOSIXAPI_ size_t x_system_cpu_thread_count(void)
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_thread_count(void)
 {
 	static size_t 	_static_system_cpu_thread_count = 0;
 
@@ -535,7 +535,7 @@ _XPOSIXAPI_ size_t x_system_cpu_thread_count(void)
 }
 
 // Get the size of cpu cache line
-_XPOSIXAPI_ size_t x_system_cpu_cache_line_size(void)
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_cache_line_size(void)
 {
 	static size_t 	_static_system_cpu_cache_line_size = 0;
 
@@ -594,7 +594,7 @@ _XPOSIXAPI_ size_t x_system_cpu_cache_line_size(void)
 
 
 // The name of the user who is now logged in
-_XPOSIXAPI_ const char* x_system_current_user(void)
+_XPOSIXAPI_ const char* __xcall__ x_system_current_user(void)
 {
 	static char 	_static_system_current_user[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(_static_system_current_user))
@@ -663,7 +663,7 @@ _XPOSIXAPI_ const char* x_system_current_user(void)
 }
 
 // Computer name
-_XPOSIXAPI_ const char* x_system_host_name(void)
+_XPOSIXAPI_ const char* __xcall__ x_system_host_name(void)
 {
 	static char	_static_system_host_name[_X_FILESYSTEM_MAX_NAME] = { 0 };
 #if defined(XANADU_SYSTEM_WINDOWS)
@@ -685,7 +685,7 @@ _XPOSIXAPI_ const char* x_system_host_name(void)
 }
 
 // Gets the directory for the current user
-_XPOSIXAPI_ const char* x_system_user_home(void)
+_XPOSIXAPI_ const char* __xcall__ x_system_user_home(void)
 {
 	static char 	_static_system_user_home[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(_static_system_user_home))
@@ -705,7 +705,7 @@ _XPOSIXAPI_ const char* x_system_user_home(void)
 }
 
 // Get system cache directory
-_XPOSIXAPI_ const char* x_system_cache_directory(void)
+_XPOSIXAPI_ const char* __xcall__ x_system_cache_directory(void)
 {
 	static char	_staticCacheDirectory[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(_staticCacheDirectory))
@@ -732,7 +732,7 @@ _XPOSIXAPI_ const char* x_system_cache_directory(void)
 }
 
 // Get system config directory
-_XPOSIXAPI_ const char* x_system_config_directory(void)
+_XPOSIXAPI_ const char* __xcall__ x_system_config_directory(void)
 {
 	static char	_static_system_config_directory[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(_static_system_config_directory))

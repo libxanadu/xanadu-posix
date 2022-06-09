@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -33,18 +31,16 @@ _XPOSIXAPI_ unsigned int __xcall__ x_posix_usleep(unsigned int _Microseconds);
 
 
 // Gets the total number of second of the current system time
-_XPOSIXAPI_ int64_t x_time_system_second();
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_second();
 
 // Gets the total number of millisecond of the current system time
-_XPOSIXAPI_ int64_t x_time_system_millisecond();
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_millisecond();
 
 // Gets the total number of microsecond of the current system time
-_XPOSIXAPI_ int64_t x_time_system_microsecond();
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_microsecond();
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

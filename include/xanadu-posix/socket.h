@@ -8,9 +8,7 @@
 #endif
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // 套接字类型定义
@@ -125,9 +123,7 @@ _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _A
 _XPOSIXAPI_ int __xcall__ x_socket_transfer(x_socket_t _Socket1, x_socket_t _Socket2);
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

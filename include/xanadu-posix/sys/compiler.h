@@ -46,4 +46,18 @@
 #endif
 
 
+
+// X-Series cxx compatible export packaging
+#if defined(__cplusplus)
+#define 		XANADU_CXX_EXTERN_BEGIN			extern "C" {
+#else
+#define 		XANADU_CXX_EXTERN_BEGIN
+#endif
+#if defined(__cplusplus)
+#define 		XANADU_CXX_EXTERN_END			}
+#else
+#define 		XANADU_CXX_EXTERN_END
+#endif
+
+
 #endif

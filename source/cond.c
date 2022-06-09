@@ -3,7 +3,7 @@
 
 
 // cond init
-_XPOSIXAPI_ void x_cond_init(x_cond_t* _Cond)
+_XPOSIXAPI_ void __xcall__ x_cond_init(x_cond_t* _Cond)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Cond == NULL)
@@ -19,7 +19,7 @@ _XPOSIXAPI_ void x_cond_init(x_cond_t* _Cond)
 }
 
 // cond destroy
-_XPOSIXAPI_ void x_cond_destroy(x_cond_t* _Cond)
+_XPOSIXAPI_ void __xcall__ x_cond_destroy(x_cond_t* _Cond)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Cond == NULL)
@@ -35,7 +35,7 @@ _XPOSIXAPI_ void x_cond_destroy(x_cond_t* _Cond)
 }
 
 // cond signal
-_XPOSIXAPI_ int x_cond_signal(x_cond_t* _Cond)
+_XPOSIXAPI_ int __xcall__ x_cond_signal(x_cond_t* _Cond)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Cond == NULL)
@@ -55,7 +55,7 @@ _XPOSIXAPI_ int x_cond_signal(x_cond_t* _Cond)
 }
 
 // cond wait
-_XPOSIXAPI_ int x_cond_wait(x_cond_t* _Cond, x_mutex_t* _Mutex)
+_XPOSIXAPI_ int __xcall__ x_cond_wait(x_cond_t* _Cond, x_mutex_t* _Mutex)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Cond == NULL)
@@ -79,7 +79,7 @@ _XPOSIXAPI_ int x_cond_wait(x_cond_t* _Cond, x_mutex_t* _Mutex)
 }
 
 // cond wait timeout
-_XPOSIXAPI_ int x_cond_wait_timeout(x_cond_t* _Cond, x_mutex_t* _Mutex, unsigned int _TimeoutMS)
+_XPOSIXAPI_ int __xcall__ x_cond_wait_timeout(x_cond_t* _Cond, x_mutex_t* _Mutex, unsigned int _TimeoutMS)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Cond == NULL)

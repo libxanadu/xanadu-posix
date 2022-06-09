@@ -11,8 +11,9 @@
 #endif
 
 
+
 // Gets the path of the current application
-_XPOSIXAPI_ const char* x_application_native_path()
+_XPOSIXAPI_ const char* __xcall__ x_application_native_path()
 {
 	static char		vApplicationPath[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(vApplicationPath))
@@ -59,7 +60,7 @@ _XPOSIXAPI_ const char* x_application_native_path()
 }
 
 // Gets the directory of the current application
-_XPOSIXAPI_ const char* x_application_native_directory()
+_XPOSIXAPI_ const char* __xcall__ x_application_native_directory()
 {
 	static char	vApplicationDirectory[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(vApplicationDirectory))
@@ -75,7 +76,7 @@ _XPOSIXAPI_ const char* x_application_native_directory()
 }
 
 // Gets the name of the current application
-_XPOSIXAPI_ const char* x_application_native_name()
+_XPOSIXAPI_ const char* __xcall__ x_application_native_name()
 {
 	static char	vApplicationName[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(vApplicationName))
@@ -92,8 +93,10 @@ _XPOSIXAPI_ const char* x_application_native_name()
 
 
 
+
+
 // Application com name
-static const char* x_application_com_xanadu_name()
+static const char* __xcall__ x_application_com_xanadu_name()
 {
 	static char	_static_com_xanadu_name[_X_FILESYSTEM_MAX_NAME] = {0};
 	if(0 == x_posix_strlen(_static_com_xanadu_name))
@@ -130,7 +133,7 @@ static const char* x_application_com_xanadu_name()
 }
 
 // Gets the cache directory of the current application
-_XPOSIXAPI_ const char* x_application_cache_directory()
+_XPOSIXAPI_ const char* __xcall__ x_application_cache_directory()
 {
 	static char	_static_application_cache_directory[X_FILESYSTEM_MAX_PATH] = {0};
 	if(0 == x_posix_strlen(_static_application_cache_directory))
@@ -150,7 +153,7 @@ _XPOSIXAPI_ const char* x_application_cache_directory()
 }
 
 // Gets the config directory of the current application
-_XPOSIXAPI_ const char* x_application_config_directory()
+_XPOSIXAPI_ const char* __xcall__ x_application_config_directory()
 {
 	static char	_static_application_config_directory[X_FILESYSTEM_MAX_PATH] = {0};
 	if (0 == x_posix_strlen(_static_application_config_directory))

@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -21,9 +19,7 @@ _XPOSIXAPI_ size_t __xcall__ x_posix_mbstowcs(wchar_t* _WCS, const char* _MBS, s
 
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

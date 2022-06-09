@@ -1181,7 +1181,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_closedir(DIR* _Stream)
 
 
 // To format the specified path, you need to call x_posix_free() to free memory. This function replaces \ with /, and removes the at the end /.
-_XPOSIXAPI_ char* x_filesystem_path_format(const char* _Filepath)
+_XPOSIXAPI_ char* __xcall__ x_filesystem_path_format(const char* _Filepath)
 {
 	char*		vFilePath = x_posix_strdup(_Filepath);
 	uint64_t 	vLength = x_posix_strlen(vFilePath);
@@ -1204,7 +1204,7 @@ _XPOSIXAPI_ char* x_filesystem_path_format(const char* _Filepath)
 }
 
 // Find the last delimiter, including '\\' and '/'
-_XPOSIXAPI_ const char* x_filesystem_path_last_delimiter(const char* _Filepath)
+_XPOSIXAPI_ const char* __xcall__ x_filesystem_path_last_delimiter(const char* _Filepath)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Filepath == NULL)
@@ -1237,7 +1237,7 @@ _XPOSIXAPI_ const char* x_filesystem_path_last_delimiter(const char* _Filepath)
 }
 
 // win32 : dos path to native path
-_XPOSIXAPI_ int x_filesystem_path_dos_to_native(const char* _DosPath, char* _NativePath, size_t _Length)
+_XPOSIXAPI_ int __xcall__ x_filesystem_path_dos_to_native(const char* _DosPath, char* _NativePath, size_t _Length)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_DosPath == NULL || _NativePath == NULL || _Length == 0)
@@ -1290,7 +1290,7 @@ _XPOSIXAPI_ int x_filesystem_path_dos_to_native(const char* _DosPath, char* _Nat
 
 
 // Open the specified directory and return to the first child node
-_XPOSIXAPI_ x_dir_stream_t x_filesystem_find_first(const char* _Directory, x_file_data_t* _FileData)
+_XPOSIXAPI_ x_dir_stream_t __xcall__ x_filesystem_find_first(const char* _Directory, x_file_data_t* _FileData)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Directory == NULL || _FileData == NULL)
@@ -1365,7 +1365,7 @@ _XPOSIXAPI_ x_dir_stream_t x_filesystem_find_first(const char* _Directory, x_fil
 }
 
 // Find the next name. If successful returns 0, Failure returned - 1.
-_XPOSIXAPI_ int x_filesystem_find_next(x_dir_stream_t _Stream, x_file_data_t* _FileData)
+_XPOSIXAPI_ int __xcall__ x_filesystem_find_next(x_dir_stream_t _Stream, x_file_data_t* _FileData)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Stream == NULL || _FileData == NULL)
@@ -1407,7 +1407,7 @@ _XPOSIXAPI_ int x_filesystem_find_next(x_dir_stream_t _Stream, x_file_data_t* _F
 }
 
 // This function closes the specified search handle. If successful returns 0, Failure returned - 1.
-_XPOSIXAPI_ int x_filesystem_find_close(x_dir_stream_t _Stream)
+_XPOSIXAPI_ int __xcall__ x_filesystem_find_close(x_dir_stream_t _Stream)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_Stream == NULL)
@@ -1428,7 +1428,7 @@ _XPOSIXAPI_ int x_filesystem_find_close(x_dir_stream_t _Stream)
 
 
 // Copy files to another path
-_XPOSIXAPI_ int x_filesystem_copy_path(const char* _Source, const char* _Target)
+_XPOSIXAPI_ int __xcall__ x_filesystem_copy_path(const char* _Source, const char* _Target)
 {
 	int 			vStatus = 0;
 	x_file_stat_t		vStat;
@@ -1453,7 +1453,7 @@ _XPOSIXAPI_ int x_filesystem_copy_path(const char* _Source, const char* _Target)
 }
 
 // Copy file to another path
-_XPOSIXAPI_ int x_filesystem_copy_file(const char* _Source, const char* _Target)
+_XPOSIXAPI_ int __xcall__ x_filesystem_copy_file(const char* _Source, const char* _Target)
 {
 	FILE*			vHandleR = NULL;
 	FILE*			vHandleW = NULL;
@@ -1551,7 +1551,7 @@ _XPOSIXAPI_ int x_filesystem_copy_file(const char* _Source, const char* _Target)
 }
 
 // Copy directory to another path
-_XPOSIXAPI_ int x_filesystem_copy_directory(const char* _Source, const char* _Target)
+_XPOSIXAPI_ int __xcall__ x_filesystem_copy_directory(const char* _Source, const char* _Target)
 {
 	int 			vStatus = 0;
 	x_dir_stream_t		vStream = NULL;
@@ -1603,13 +1603,13 @@ _XPOSIXAPI_ int x_filesystem_copy_directory(const char* _Source, const char* _Ta
 
 
 // Analog CXX : std_filesystem_exists
-_XPOSIXAPI_ bool x_filesystem_exists(const char* _FilePath)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_exists(const char* _FilePath)
 {
 	return 0 == x_posix_access(_FilePath, F_OK);
 }
 
 // Gets information about the file the path points to
-_XPOSIXAPI_ int x_filesystem_stat(const char* _FilePath, x_file_stat_t* _Stat)
+_XPOSIXAPI_ int __xcall__ x_filesystem_stat(const char* _FilePath, x_file_stat_t* _Stat)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_FilePath == NULL || _Stat == NULL)
@@ -1632,7 +1632,7 @@ _XPOSIXAPI_ int x_filesystem_stat(const char* _FilePath, x_file_stat_t* _Stat)
 }
 
 // Analog CXX : std_filesystem_is_block_file
-_XPOSIXAPI_ bool x_filesystem_is_block_file(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_block_file(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	UNREFERENCED_PARAMETER(_StatMode);
@@ -1643,7 +1643,7 @@ _XPOSIXAPI_ bool x_filesystem_is_block_file(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_character_file
-_XPOSIXAPI_ bool x_filesystem_is_character_file(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_character_file(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return (_StatMode & S_IFMT) == _S_IFCHR;
@@ -1653,7 +1653,7 @@ _XPOSIXAPI_ bool x_filesystem_is_character_file(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_directory
-_XPOSIXAPI_ bool x_filesystem_is_directory(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_directory(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return (_StatMode & S_IFMT) == _S_IFDIR;
@@ -1663,7 +1663,7 @@ _XPOSIXAPI_ bool x_filesystem_is_directory(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_fifo
-_XPOSIXAPI_ bool x_filesystem_is_fifo(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_fifo(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return (_StatMode & S_IFMT) == _S_IFIFO;
@@ -1673,7 +1673,7 @@ _XPOSIXAPI_ bool x_filesystem_is_fifo(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_other
-_XPOSIXAPI_ bool x_filesystem_is_other(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_other(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	switch (_StatMode & S_IFMT)
@@ -1694,7 +1694,7 @@ _XPOSIXAPI_ bool x_filesystem_is_other(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_regular_file
-_XPOSIXAPI_ bool x_filesystem_is_regular_file(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_regular_file(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return (_StatMode & S_IFMT) == _S_IFREG;
@@ -1704,7 +1704,7 @@ _XPOSIXAPI_ bool x_filesystem_is_regular_file(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_socket
-_XPOSIXAPI_ bool x_filesystem_is_socket(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_socket(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	UNREFERENCED_PARAMETER(_StatMode);
@@ -1715,7 +1715,7 @@ _XPOSIXAPI_ bool x_filesystem_is_socket(uint32_t _StatMode)
 }
 
 // Analog CXX : std_filesystem_is_symlink
-_XPOSIXAPI_ bool x_filesystem_is_symlink(uint32_t _StatMode)
+_XPOSIXAPI_ bool __xcall__ x_filesystem_is_symlink(uint32_t _StatMode)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	UNREFERENCED_PARAMETER(_StatMode);

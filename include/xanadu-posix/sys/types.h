@@ -33,9 +33,7 @@
 #endif
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // X-Series type definition : Integer range
@@ -168,7 +166,7 @@ typedef struct __dirstream
 
 
 
-// Define some basic types
+// X-Series type definition : Basic types
 typedef		bool				x_bool_t;
 typedef		char				x_char_t;
 typedef		unsigned char			x_uchar_t;
@@ -182,11 +180,12 @@ typedef		long long			x_llong_t;
 typedef		unsigned long long		x_ullong_t;
 typedef		float				x_float_t;
 typedef		double				x_double_t;
+typedef		double				x_real_t;
 typedef		long double			x_ldouble_t;
 
 
 
-// Define some types related to platform bits
+// X-Series type definition : Platform bits
 #if defined(XANADU_PLATFORM_BIT_32)
 typedef		int				x_ssize_t;
 typedef		unsigned int			x_size_t;
@@ -197,16 +196,14 @@ typedef		unsigned long long		x_size_t;
 
 
 
-// Define range types for some data
+// X-Series type definition : Range types
 typedef 	x_size_t			x_pos_type;
 typedef 	x_ssize_t			x_diff_type;
 typedef 	x_llong_t			x_time_type;
 
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

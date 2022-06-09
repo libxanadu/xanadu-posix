@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // X-Series type definition : x_process_stream_t
@@ -61,35 +59,33 @@ _XPOSIXAPI_ int __xcall__ x_posix_kill(pid_t _Pid, int _Sig);
 
 
 // This function returns the process identifier of the calling process.
-_XPOSIXAPI_ x_process_id_t x_process_get_id();
+_XPOSIXAPI_ x_process_id_t __xcall__ x_process_get_id();
 
 // Enable process privilege (Windows only)
-_XPOSIXAPI_ int x_process_enable_privilege();
+_XPOSIXAPI_ int __xcall__ x_process_enable_privilege();
 
 // Kill the process with the specified process id
-_XPOSIXAPI_ int x_process_kill_id(x_process_id_t _ProcessID, int _Signal);
+_XPOSIXAPI_ int __xcall__ x_process_kill_id(x_process_id_t _ProcessID, int _Signal);
 
 // Kill the process with the specified process name
-_XPOSIXAPI_ int x_process_kill_name(const char* _ProcessName, int _Signal);
+_XPOSIXAPI_ int __xcall__ x_process_kill_name(const char* _ProcessName, int _Signal);
 
 // Get data according to process ID
-_XPOSIXAPI_ int x_process_get_data_by_id(x_process_id_t _ProcessID, x_process_data_t* _ProcessData);
+_XPOSIXAPI_ int __xcall__ x_process_get_data_by_id(x_process_id_t _ProcessID, x_process_data_t* _ProcessData);
 
 
 
 // Process lookup start
-_XPOSIXAPI_ x_process_stream_t x_process_find_first(x_process_data_t* _ProcessData);
+_XPOSIXAPI_ x_process_stream_t __xcall__ x_process_find_first(x_process_data_t* _ProcessData);
 
 // Find the next process. If successful returns 0, Failure returned - 1.
-_XPOSIXAPI_ int x_process_find_next(x_process_stream_t _Handle, x_process_data_t* _ProcessData);
+_XPOSIXAPI_ int __xcall__ x_process_find_next(x_process_stream_t _Handle, x_process_data_t* _ProcessData);
 
 // This function closes the specified search handle. If successful returns 0, Failure returned - 1.
-_XPOSIXAPI_ int x_process_find_close(x_process_stream_t _Handle);
+_XPOSIXAPI_ int __xcall__ x_process_find_close(x_process_stream_t _Handle);
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

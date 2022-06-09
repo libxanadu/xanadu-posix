@@ -4,31 +4,31 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
+
 
 
 // Gets the path of the current application
-_XPOSIXAPI_ const char* x_application_native_path();
+_XPOSIXAPI_ const char* __xcall__ x_application_native_path();
 
 // Gets the directory of the current application
-_XPOSIXAPI_ const char* x_application_native_directory();
+_XPOSIXAPI_ const char* __xcall__ x_application_native_directory();
 
 // Gets the name of the current application
-_XPOSIXAPI_ const char* x_application_native_name();
+_XPOSIXAPI_ const char* __xcall__ x_application_native_name();
+
+
 
 
 
 // Gets the cache directory of the current application
-_XPOSIXAPI_ const char* x_application_cache_directory();
+_XPOSIXAPI_ const char* __xcall__ x_application_cache_directory();
 
 // Gets the config directory of the current application
-_XPOSIXAPI_ const char* x_application_config_directory();
+_XPOSIXAPI_ const char* __xcall__ x_application_config_directory();
 
 
-#if defined(__cplusplus)
-}
-#endif
+
+XANADU_CXX_EXTERN_END
 
 #endif

@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // 日志级别
@@ -68,9 +66,7 @@ _XPOSIXAPI_ int __xcall__ x_log_vprintf(x_log_level_t _Level, const char* _TAG, 
 #define			XLOG_FATAL(_TAG, _Format, ...)				x_log_printf(XLOG_LEVEL_FATAL, _TAG, _Format, ##__VA_ARGS__)
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

@@ -70,41 +70,42 @@ _XPOSIXAPI_ unsigned int __xcall__ x_posix_usleep(unsigned int _Microseconds)
 
 
 // Gets the total number of second of the current system time
-_XPOSIXAPI_ int64_t x_time_system_second()
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_second()
 {
+	x_time_type		vSecond = 0;
 #if defined(XANADU_SYSTEM_WINDOWS)
 	struct timeb		vRawtime;
 	ftime(&vRawtime);
-	return vRawtime.time;
+	vSecond = vRawtime.time;
 #else
-	int64_t			vSecond = 0;
 	struct timespec		vTimeSpec;
 	clock_gettime(CLOCK_REALTIME, &vTimeSpec);
 	vSecond = vTimeSpec.tv_sec;
-	return vSecond;
 #endif
+	return vSecond;
 }
 
 // Gets the total number of millisecond of the current system time
-_XPOSIXAPI_ int64_t x_time_system_millisecond()
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_millisecond()
 {
+	x_time_type		vMillisecond = 0;
 #if defined(XANADU_SYSTEM_WINDOWS)
 	struct timeb		vRawtime;
 	ftime(&vRawtime);
-	return vRawtime.time * 1000LL + vRawtime.millitm;
+	vMillisecond = vRawtime.time * 1000LL + vRawtime.millitm;
 #else
-	int64_t			vMillisecond = 0;
 	struct timespec		vTimeSpec;
 	clock_gettime(CLOCK_REALTIME, &vTimeSpec);
 	vMillisecond = vTimeSpec.tv_sec * 1000;
 	vMillisecond += (vTimeSpec.tv_nsec / 1000000);
-	return vMillisecond;
 #endif
+	return vMillisecond;
 }
 
 // Gets the total number of microsecond of the current system time
-_XPOSIXAPI_ int64_t x_time_system_microsecond()
+_XPOSIXAPI_ x_time_type __xcall__ x_time_system_microsecond()
 {
+	x_time_type		vMicrosecond = 0;
 #if defined(XANADU_SYSTEM_WINDOWS)
 	// Time from 0:0:0:000 on January 1, 1601 to 0:0:0:000 on January 1, 1970 (unit: 100ns)
 #define			TIME_OFFSET_1601_TO_1970   (116444736000000000LL)
@@ -115,14 +116,12 @@ _XPOSIXAPI_ int64_t x_time_system_microsecond()
 	vLarge.LowPart = vFileTime.dwLowDateTime;
 	vLarge.HighPart = (LONG)vFileTime.dwHighDateTime;
 	// Microseconds from 0:0:0:000 on January 1, 1970 (UTC time)
-	int64_t			vMicrosecond = (vLarge.QuadPart - TIME_OFFSET_1601_TO_1970) / 10;
-	return vMicrosecond;
+	vMicrosecond = (vLarge.QuadPart - TIME_OFFSET_1601_TO_1970) / 10;
 #else
-	int64_t			vMicrosecond = 0;
 	struct timespec		vTimeSpec;
 	clock_gettime(CLOCK_REALTIME, &vTimeSpec);
 	vMicrosecond = vTimeSpec.tv_sec * 1000000;
 	vMicrosecond += (vTimeSpec.tv_nsec / 1000);
-	return vMicrosecond;
 #endif
+	return vMicrosecond;
 }

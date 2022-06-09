@@ -31,7 +31,7 @@ _XPOSIXAPI_ pid_t __xcall__ x_posix_gettid(void)
 
 
 /// Create a thread
-_XPOSIXAPI_ x_thread_t x_thread_create(x_thread_function_t _Address, void* _Param)
+_XPOSIXAPI_ x_thread_t __xcall__ x_thread_create(x_thread_function_t _Address, void* _Param)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)_Address, _Param, 0, 0);
@@ -44,10 +44,10 @@ _XPOSIXAPI_ x_thread_t x_thread_create(x_thread_function_t _Address, void* _Para
 }
 
 /// Thread detach
-_XPOSIXAPI_ void x_thread_detach(x_thread_t _Thread)
+_XPOSIXAPI_ void __xcall__ x_thread_detach(x_thread_t _Thread)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
-	if(_Thread == _X_THREAD_INVALID_HANDLE)
+	if(_Thread == X_THREAD_INVALID_HANDLE)
 	{
 		return;
 	}
@@ -60,7 +60,7 @@ _XPOSIXAPI_ void x_thread_detach(x_thread_t _Thread)
 }
 
 /// Gets the ID of the thread itself.
-_XPOSIXAPI_ x_thread_t x_thread_self()
+_XPOSIXAPI_ x_thread_t __xcall__ x_thread_self()
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	return GetCurrentThread();
@@ -70,10 +70,10 @@ _XPOSIXAPI_ x_thread_t x_thread_self()
 }
 
 /// Wait for the end of a thread
-_XPOSIXAPI_ int x_thread_join(x_thread_t _Thread)
+_XPOSIXAPI_ int __xcall__ x_thread_join(x_thread_t _Thread)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
-	if(_Thread == _X_THREAD_INVALID_HANDLE)
+	if(_Thread == X_THREAD_INVALID_HANDLE)
 	{
 		return EINVAL;
 	}
@@ -86,10 +86,10 @@ _XPOSIXAPI_ int x_thread_join(x_thread_t _Thread)
 }
 
 /// Check whether the thread is alive
-_XPOSIXAPI_ int x_thread_alive(x_thread_t _Thread)
+_XPOSIXAPI_ int __xcall__ x_thread_alive(x_thread_t _Thread)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
-	if(_Thread == _X_THREAD_INVALID_HANDLE)
+	if(_Thread == X_THREAD_INVALID_HANDLE)
 	{
 		return EINVAL;
 	}
@@ -109,10 +109,10 @@ _XPOSIXAPI_ int x_thread_alive(x_thread_t _Thread)
 }
 
 /// Kill the specified thread
-_XPOSIXAPI_ int x_thread_kill(x_thread_t _Thread)
+_XPOSIXAPI_ int __xcall__ x_thread_kill(x_thread_t _Thread)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
-	if(_Thread == _X_THREAD_INVALID_HANDLE)
+	if(_Thread == X_THREAD_INVALID_HANDLE)
 	{
 		return EINVAL;
 	}

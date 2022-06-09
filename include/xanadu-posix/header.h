@@ -7,10 +7,11 @@
 #include <xanadu-posix/sys/types.h>
 
 
-// xanadu-posix 使用的调用约定
+
+// X-Series macro definition: call
 #if defined(XANADU_COMPILER_MSVC)
 #define			XANADU_POSIX_CALL				__cdecl
-#elif defined(XANADU_COMPILER_GNUC)
+#elif defined(XANADU_COMPILER_GNUC) || defined(XANADU_COMPILER_CLANG)
 // #define		XANADU_POSIX_CALL				__attribute__((__cdecl__))
 #define			XANADU_POSIX_CALL
 #else
@@ -19,7 +20,8 @@
 #define			__xcall__					XANADU_POSIX_CALL
 
 
-// xanadu-posix 平台宏
+
+// X-Series macro definition: Platform
 #define			__XFILE__					__FILE__
 #define			__XLINE__					__LINE__
 #if defined(XANADU_COMPILER_MSVC)
@@ -35,7 +37,8 @@
 #define			__XTIMESTAMP__					__TIMESTAMP__
 
 
-// xanadu-posix 导出定义
+
+// X-Series macro definition: Export
 #if defined(XANADU_POSIX_BUILD_STATIC)
 #define			_XPOSIXAPI_
 #else
@@ -47,10 +50,12 @@
 #endif
 
 
-// xanadu-posix 宏定义
+
+// X-Series macro definition: Control
 #define 		XANADU_UNUSED(_Param)				((void)_Param)
 #define			XANADU_PATH_MAX					(1024)
 #define			XANADU_STDIO_VSNPRINTF_EXTRA			(10)
+
 
 
 #endif

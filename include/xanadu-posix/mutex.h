@@ -7,9 +7,7 @@
 #endif
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // X-Series type definition : x_mutex_t
@@ -21,24 +19,22 @@ typedef				pthread_mutex_t			x_mutex_t;
 
 
 // mutex init
-_XPOSIXAPI_ void x_mutex_init(x_mutex_t* _Mutex);
+_XPOSIXAPI_ void __xcall__ x_mutex_init(x_mutex_t* _Mutex);
 
 // mutex destroy
-_XPOSIXAPI_ void x_mutex_destroy(x_mutex_t* _Mutex);
+_XPOSIXAPI_ void __xcall__ x_mutex_destroy(x_mutex_t* _Mutex);
 
 // mutex lock
-_XPOSIXAPI_ void x_mutex_lock(x_mutex_t* _Mutex);
+_XPOSIXAPI_ void __xcall__ x_mutex_lock(x_mutex_t* _Mutex);
 
 // mutex trylock
-_XPOSIXAPI_ int x_mutex_trylock(x_mutex_t* _Mutex);
+_XPOSIXAPI_ int __xcall__ x_mutex_trylock(x_mutex_t* _Mutex);
 
 // mutex unlock
-_XPOSIXAPI_ void x_mutex_unlock(x_mutex_t* _Mutex);
+_XPOSIXAPI_ void __xcall__ x_mutex_unlock(x_mutex_t* _Mutex);
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

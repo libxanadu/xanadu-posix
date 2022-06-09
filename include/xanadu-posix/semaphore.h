@@ -8,9 +8,7 @@
 #endif
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 // X-Series type definition : x_semaphore_t
@@ -52,9 +50,7 @@ _XPOSIXAPI_ int __xcall__ x_semaphore_destroy(x_semaphore_t* _Handle);
 _XPOSIXAPI_ int __xcall__ x_semaphore_close(x_semaphore_t* _Handle);
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

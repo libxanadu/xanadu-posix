@@ -1,8 +1,9 @@
 ﻿#include <xanadu-posix/mutex.h>
 
 
+
 // mutex init
-_XPOSIXAPI_ void x_mutex_init(x_mutex_t* _Mutex)
+_XPOSIXAPI_ void __xcall__ x_mutex_init(x_mutex_t* _Mutex)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	InitializeCriticalSection(_Mutex);
@@ -12,7 +13,7 @@ _XPOSIXAPI_ void x_mutex_init(x_mutex_t* _Mutex)
 }
 
 // mutex destroy
-_XPOSIXAPI_ void x_mutex_destroy(x_mutex_t* _Mutex)
+_XPOSIXAPI_ void __xcall__ x_mutex_destroy(x_mutex_t* _Mutex)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	DeleteCriticalSection(_Mutex);
@@ -22,7 +23,7 @@ _XPOSIXAPI_ void x_mutex_destroy(x_mutex_t* _Mutex)
 }
 
 // mutex lock
-_XPOSIXAPI_ void x_mutex_lock(x_mutex_t* _Mutex)
+_XPOSIXAPI_ void __xcall__ x_mutex_lock(x_mutex_t* _Mutex)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	EnterCriticalSection(_Mutex);
@@ -32,7 +33,7 @@ _XPOSIXAPI_ void x_mutex_lock(x_mutex_t* _Mutex)
 }
 
 // mutex trylock
-_XPOSIXAPI_ int x_mutex_trylock(x_mutex_t* _Mutex)
+_XPOSIXAPI_ int __xcall__ x_mutex_trylock(x_mutex_t* _Mutex)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	if(TryEnterCriticalSection(_Mutex))
@@ -49,7 +50,7 @@ _XPOSIXAPI_ int x_mutex_trylock(x_mutex_t* _Mutex)
 }
 
 // mutex unlock
-_XPOSIXAPI_ void x_mutex_unlock(x_mutex_t* _Mutex)
+_XPOSIXAPI_ void __xcall__ x_mutex_unlock(x_mutex_t* _Mutex)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
 	LeaveCriticalSection(_Mutex);

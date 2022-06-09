@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -79,50 +77,48 @@ _XPOSIXAPI_ int __xcall__ x_posix_dlclose(void* _Handle);
 
 
 // Sets the last-error code for the calling thread.
-_XPOSIXAPI_ void x_system_set_last_error(int _Error);
+_XPOSIXAPI_ void __xcall__ x_system_set_last_error(int _Error);
 
 // Gets the last-error code for the calling thread.
-_XPOSIXAPI_ int x_system_get_last_error(void);
+_XPOSIXAPI_ int __xcall__ x_system_get_last_error(void);
 
 
 
 // Get operating system bits
-_XPOSIXAPI_ size_t x_system_os_bits(void);
+_XPOSIXAPI_ size_t __xcall__ x_system_os_bits(void);
 
 
 
 // Get the number of CPU cores
-_XPOSIXAPI_ size_t x_system_cpu_core_count(void);
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_core_count(void);
 
 // Get the number of CPU threads
-_XPOSIXAPI_ size_t x_system_cpu_thread_count(void);
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_thread_count(void);
 
 // Get the size of cpu cache line
-_XPOSIXAPI_ size_t x_system_cpu_cache_line_size(void);
+_XPOSIXAPI_ size_t __xcall__ x_system_cpu_cache_line_size(void);
 
 
 
 // The name of the user who is now logged in
-_XPOSIXAPI_ const char* x_system_current_user(void);
+_XPOSIXAPI_ const char* __xcall__ x_system_current_user(void);
 
 // Computer name
-_XPOSIXAPI_ const char* x_system_host_name(void);
+_XPOSIXAPI_ const char* __xcall__ x_system_host_name(void);
 
 // Gets the directory for the current user
-_XPOSIXAPI_ const char* x_system_user_home(void);
+_XPOSIXAPI_ const char* __xcall__ x_system_user_home(void);
 
 // Get system cache directory
-_XPOSIXAPI_ const char* x_system_cache_directory(void);
+_XPOSIXAPI_ const char* __xcall__ x_system_cache_directory(void);
 
 // Get system config directory
-_XPOSIXAPI_ const char* x_system_config_directory(void);
+_XPOSIXAPI_ const char* __xcall__ x_system_config_directory(void);
 
 
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif

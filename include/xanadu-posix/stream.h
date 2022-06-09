@@ -4,9 +4,7 @@
 #include <xanadu-posix/header.h>
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+XANADU_CXX_EXTERN_BEGIN
 
 
 
@@ -62,9 +60,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_vfscanf(FILE* _Stream, const char* _Format, va
 _XPOSIXAPI_ int __xcall__ x_posix_fflush(FILE* _Stream);
 
 
-#if defined(__cplusplus)
-}
-#endif
+XANADU_CXX_EXTERN_END
 
 
 #endif
