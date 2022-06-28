@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -52,7 +51,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_mlock(const void* _Addr, size_t _Length);
 _XPOSIXAPI_ int __xcall__ x_posix_munlock(const void* _Addr, size_t _Length);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

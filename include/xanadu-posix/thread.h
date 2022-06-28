@@ -6,7 +6,6 @@
 #include <pthread.h>
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -63,7 +62,7 @@ _XPOSIXAPI_ int __xcall__ x_thread_alive(x_thread_t _Thread);
 _XPOSIXAPI_ int __xcall__ x_thread_kill(x_thread_t _Thread);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

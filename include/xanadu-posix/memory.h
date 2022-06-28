@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -45,6 +44,9 @@ _XPOSIXAPI_ void* __xcall__ x_posix_memrchr(const void* _Buf, int _Val, size_t _
 // posix : memcmp
 _XPOSIXAPI_ int __xcall__ x_posix_memcmp(const void* _Buf1, const void* _Buf2, size_t _Size);
 
+// posix : memrev
+_XPOSIXAPI_ void* __xcall__ x_posix_memrev(void* _Memory, size_t _Size);
+
 
 
 
@@ -67,10 +69,11 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wmemrchr(const wchar_t* _Buf, wchar
 // posix : wmemcmp
 _XPOSIXAPI_ int __xcall__ x_posix_wmemcmp(const wchar_t* _Buf1, const wchar_t* _Buf2, size_t _Size);
 
+// posix : wmemrev
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wmemrev(wchar_t* _Memory, size_t _Size);
 
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif

@@ -1,5 +1,7 @@
 ﻿#include <xanadu-posix/pipe.h>
+#if !defined(XANADU_SYSTEM_WINDOWS)
 #include <xanadu-posix/filesystem.h>
+#endif
 #include <xanadu-posix/system.h>
 
 
@@ -28,49 +30,6 @@ _XPOSIXAPI_ int __xcall__ x_pipe_create(x_pipe_handle* _Read, x_pipe_handle* _Wr
 	return vError;
 #endif
 }
-
-
-
-
-
-// creates a new fifo file with name path.
-_XPOSIXAPI_ x_pipe_handle __xcall__ x_fifo_create(const char* _Path, mode_t _Mode)
-{
-	x_pipe_handle		vHandle = X_INVALID_HANDLE;
-#if defined(XANADU_SYSTEM_WINDOWS)
-	XANADU_UNUSED(_Mode);
-	vHandle = CreateNamedPipeA(_Path, PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_READMODE_BYTE, 1, 0, 0, 1000, NULL);
-	if (vHandle == X_INVALID_HANDLE)
-	{
-		return X_INVALID_HANDLE;
-	}
-	if (ConnectNamedPipe(vHandle, NULL) == FALSE)
-	{
-		CloseHandle(vHandle);
-		return X_INVALID_HANDLE;
-	}
-#else
-	vHandle = mkfifo(_Path, _Mode);
-#endif
-	return vHandle;
-}
-
-// connect to a named pipe that already exists
-_XPOSIXAPI_ x_pipe_handle __xcall__ x_fifo_connect(const char* _Path, int _Flag)
-{
-	x_pipe_handle		vHandle = X_INVALID_HANDLE;
-#if defined(XANADU_SYSTEM_WINDOWS)
-	XANADU_UNUSED(_Flag);
-	vHandle = CreateFileA(_Path, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-#else
-	vHandle = x_posix_open(_Path, _Flag);
-#endif
-	return vHandle;
-}
-
-
-
-
 
 // write data to pipe
 _XPOSIXAPI_ int __xcall__ x_pipe_write(x_pipe_handle _Handle, const void* _Bytes, x_size_t _Size)

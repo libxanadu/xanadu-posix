@@ -7,7 +7,6 @@
 #include <poll.h>
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -123,7 +122,7 @@ _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _A
 _XPOSIXAPI_ int __xcall__ x_socket_transfer(x_socket_t _Socket1, x_socket_t _Socket2);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

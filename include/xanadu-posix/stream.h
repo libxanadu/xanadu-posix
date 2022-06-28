@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -60,7 +59,7 @@ _XPOSIXAPI_ int __xcall__ x_posix_vfscanf(FILE* _Stream, const char* _Format, va
 _XPOSIXAPI_ int __xcall__ x_posix_fflush(FILE* _Stream);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

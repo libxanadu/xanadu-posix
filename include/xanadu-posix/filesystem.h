@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -48,7 +47,7 @@ typedef struct _x_file_data_t
 _XPOSIXAPI_ char* __xcall__ x_posix_dirname(char* _FilePath);
 
 // posix : basename
-_XPOSIXAPI_ const char* __xcall__ x_posix_basename(const char* _FilePath);
+_XPOSIXAPI_ char* __xcall__ x_posix_basename(char* _FilePath);
 
 
 
@@ -58,7 +57,7 @@ _XPOSIXAPI_ const char* __xcall__ x_posix_basename(const char* _FilePath);
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wdirname(wchar_t* _FilePath);
 
 // posix : wbasename
-_XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wbasename(const wchar_t* _FilePath);
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wbasename(wchar_t* _FilePath);
 
 
 
@@ -263,6 +262,8 @@ _XPOSIXAPI_ int __xcall__ x_filesystem_path_dos_to_native(const char* _DosPath, 
 
 
 
+
+
 // Open the specified directory and return to the first child node
 _XPOSIXAPI_ x_dir_stream_t __xcall__ x_filesystem_find_first(const char* _Directory, x_file_data_t* _FileData);
 
@@ -274,6 +275,8 @@ _XPOSIXAPI_ int __xcall__ x_filesystem_find_close(x_dir_stream_t _Stream);
 
 
 
+
+
 // Copy files to another path
 _XPOSIXAPI_ int __xcall__ x_filesystem_copy_path(const char* _Source, const char* _Target);
 
@@ -282,6 +285,8 @@ _XPOSIXAPI_ int __xcall__ x_filesystem_copy_file(const char* _Source, const char
 
 // Copy directory to another path
 _XPOSIXAPI_ int __xcall__ x_filesystem_copy_directory(const char* _Source, const char* _Target);
+
+
 
 
 
@@ -316,7 +321,7 @@ _XPOSIXAPI_ bool __xcall__ x_filesystem_is_socket(uint32_t _StatMode);
 _XPOSIXAPI_ bool __xcall__ x_filesystem_is_symlink(uint32_t _StatMode);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

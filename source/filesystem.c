@@ -89,9 +89,17 @@ _XPOSIXAPI_ char* __xcall__ x_posix_dirname(char* _FilePath)
 }
 
 // posix : basename
-_XPOSIXAPI_ const char* __xcall__ x_posix_basename(const char* _FilePath)
+_XPOSIXAPI_ char* __xcall__ x_posix_basename(char* _FilePath)
 {
-	const char*	vTail = x_filesystem_path_last_delimiter(_FilePath);
+#if defined(XANADU_PARAMETER_VALIDATION)
+	if(_FilePath == NULL)
+	{
+		return NULL;
+	}
+#endif
+	char*		vTail_Linux = (char*)x_posix_strrchr(_FilePath, L'/');
+	char*		vTail_Win = (char*)x_posix_strrchr(_FilePath, L'\\');
+	char*		vTail = vTail_Linux > vTail_Win ? vTail_Linux : vTail_Win;
 	if(vTail)
 	{
 		return vTail + 1;
@@ -180,7 +188,7 @@ _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wdirname(wchar_t* _FilePath)
 }
 
 // posix : wbasename
-_XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wbasename(const wchar_t* _FilePath)
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wbasename(wchar_t* _FilePath)
 {
 #if defined(XANADU_PARAMETER_VALIDATION)
 	if(_FilePath == NULL)
@@ -188,29 +196,9 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wbasename(const wchar_t* _FilePath)
 		return NULL;
 	}
 #endif
-	const wchar_t*	vTail = NULL;
-	const wchar_t*	vTail_Linux = x_posix_wcsrchr(_FilePath, L'/');
-	const wchar_t*	vTail_Win = x_posix_wcsrchr(_FilePath, L'\\');
-	if(vTail_Linux && vTail_Win)
-	{
-		if(vTail_Win - vTail_Linux > 0)
-		{
-			vTail = vTail_Win;
-		}
-		else
-		{
-			vTail = vTail_Linux;
-		}
-	}
-	else if(vTail_Linux)
-	{
-		vTail = vTail_Linux;
-	}
-	else if(vTail_Win)
-	{
-		vTail = vTail_Win;
-	}
-
+	wchar_t*	vTail_Linux = (wchar_t*)x_posix_wcsrchr(_FilePath, L'/');
+	wchar_t*	vTail_Win = (wchar_t*)x_posix_wcsrchr(_FilePath, L'\\');
+	wchar_t*	vTail = vTail_Linux > vTail_Win ? vTail_Linux : vTail_Win;
 	if(vTail)
 	{
 		return vTail + 1;

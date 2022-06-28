@@ -9,8 +9,6 @@
 #include <xanadu-posix/sys/platform.h>
 #include <sys/stat.h>
 
-
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -135,7 +133,7 @@ XANADU_CXX_EXTERN_BEGIN
 #define			XANADU_SIZE_CB						(XANADU_SIZE_PHASE * XANADU_SIZE_DB)
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

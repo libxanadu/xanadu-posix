@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -19,20 +18,6 @@ typedef				int				x_pipe_handle;
 
 // Create a pair of anonymous pipes
 _XPOSIXAPI_ int __xcall__ x_pipe_create(x_pipe_handle* _Read, x_pipe_handle* _Write);
-
-
-
-
-
-// creates a new fifo file with name path.
-_XPOSIXAPI_ x_pipe_handle __xcall__ x_fifo_create(const char* _Path, mode_t _Mode);
-
-// connect to a named pipe that already exists
-_XPOSIXAPI_ x_pipe_handle __xcall__ x_fifo_connect(const char* _Path, int _Flag);
-
-
-
-
 
 // write data to pipe
 _XPOSIXAPI_ int __xcall__ x_pipe_write(x_pipe_handle _Handle, const void* _Bytes, x_size_t _Size);

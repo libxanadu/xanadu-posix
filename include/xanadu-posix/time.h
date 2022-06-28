@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -40,7 +39,7 @@ _XPOSIXAPI_ x_time_type __xcall__ x_time_system_millisecond();
 _XPOSIXAPI_ x_time_type __xcall__ x_time_system_microsecond();
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -91,6 +90,9 @@ _XPOSIXAPI_ char* __xcall__ x_posix_strupr(char* _String);
 // posix : strlwr
 _XPOSIXAPI_ char* __xcall__ x_posix_strlwr(char* _String);
 
+// posix : strrev
+_XPOSIXAPI_ char* __xcall__ x_posix_strrev(char* _String);
+
 
 
 
@@ -149,6 +151,9 @@ _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsupr(wchar_t* _String);
 // posix : wcslwr
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcslwr(wchar_t* _String);
 
+// posix : wcsrev
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsrev(wchar_t* _String);
+
 
 
 
@@ -181,8 +186,26 @@ _XPOSIXAPI_ long __xcall__ x_posix_atol(const char* _String);
 // posix : atoll
 _XPOSIXAPI_ long long __xcall__ x_posix_atoll(const char* _String);
 
+// posix : strtof
+_XPOSIXAPI_ float __xcall__ x_posix_strtof(const char* _String, char** _EndPtr);
+
+// posix : strtod
+_XPOSIXAPI_ double __xcall__ x_posix_strtod(const char* _String, char** _EndPtr);
+
+// posix : strtold
+_XPOSIXAPI_ long double __xcall__ x_posix_strtold(const char* _String, char** _EndPtr);
+
+// posix : strtol
+_XPOSIXAPI_ long __xcall__ x_posix_strtol(const char* _String, char** _EndPtr, int _Radix);
+
+// posix : strtoll
+_XPOSIXAPI_ long long __xcall__ x_posix_strtoll(const char* _String, char** _EndPtr, int _Radix);
+
 // posix : strtoul
-_XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(char const* _String, char** _EndPtr, int _Radix);
+_XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(const char* _String, char** _EndPtr, int _Radix);
+
+// posix : strtoull
+_XPOSIXAPI_ unsigned long long __xcall__ x_posix_strtoull(const char* _String, char** _EndPtr, int _Radix);
 
 
 
@@ -227,7 +250,7 @@ _XPOSIXAPI_ int __xcall__ x_string_convert_utf8_to_unicode(const char* _UTF8, wc
 _XPOSIXAPI_ int __xcall__ x_string_convert_unicode_to_utf8(const wchar_t* _Unicode, char* _UTF8, size_t _ULength);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

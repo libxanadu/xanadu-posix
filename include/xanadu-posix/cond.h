@@ -8,7 +8,6 @@
 #include <sys/time.h>
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -40,6 +39,5 @@ _XPOSIXAPI_ int __xcall__ x_cond_wait_timeout(x_cond_t* _Cond, x_mutex_t* _Mutex
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif

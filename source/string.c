@@ -349,6 +349,12 @@ _XPOSIXAPI_ char* __xcall__ x_posix_strlwr(char* _String)
 #endif
 }
 
+// posix : strrev
+_XPOSIXAPI_ char* __xcall__ x_posix_strrev(char* _String)
+{
+	return x_posix_memrev(_String, _String ? strlen(_String) : 0);
+}
+
 
 
 
@@ -581,7 +587,7 @@ _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsupr(wchar_t* _String)
 #endif
 }
 
-// posix : strlwr
+// posix : wcslwr
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcslwr(wchar_t* _String)
 {
 #if defined(XANADU_SYSTEM_WINDOWS)
@@ -594,6 +600,12 @@ _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcslwr(wchar_t* _String)
 	}
 	return _String;
 #endif
+}
+
+// posix : wcsrev
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsrev(wchar_t* _String)
+{
+	return x_posix_wmemrev(_String, _String ? wcslen(_String) : 0);
 }
 
 
@@ -702,10 +714,46 @@ _XPOSIXAPI_ long long __xcall__ x_posix_atoll(const char* _String)
 	return atoll(_String);
 }
 
+// posix : strtof
+_XPOSIXAPI_ float __xcall__ x_posix_strtof(const char* _String, char** _EndPtr)
+{
+	return strtof(_String, _EndPtr);
+}
+
+// posix : strtod
+_XPOSIXAPI_ double __xcall__ x_posix_strtod(const char* _String, char** _EndPtr)
+{
+	return strtod(_String, _EndPtr);
+}
+
+// posix : strtold
+_XPOSIXAPI_ long double __xcall__ x_posix_strtold(const char* _String, char** _EndPtr)
+{
+	return strtold(_String, _EndPtr);
+}
+
+// posix : strtol
+_XPOSIXAPI_ long __xcall__ x_posix_strtol(const char* _String, char** _EndPtr, int _Radix)
+{
+	return strtol(_String, _EndPtr, _Radix);
+}
+
+// posix : strtoll
+_XPOSIXAPI_ long long __xcall__ x_posix_strtoll(const char* _String, char** _EndPtr, int _Radix)
+{
+	return strtoll(_String, _EndPtr, _Radix);
+}
+
 // posix : strtoul
-_XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(char const* _String, char** _EndPtr, int _Radix)
+_XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(const char* _String, char** _EndPtr, int _Radix)
 {
 	return strtoul(_String, _EndPtr, _Radix);
+}
+
+// posix : strtoull
+_XPOSIXAPI_ unsigned long long __xcall__ x_posix_strtoull(const char* _String, char** _EndPtr, int _Radix)
+{
+	return strtoull(_String, _EndPtr, _Radix);
 }
 
 

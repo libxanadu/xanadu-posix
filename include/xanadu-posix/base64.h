@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -17,6 +16,5 @@ _XPOSIXAPI_ bool __xcall__ x_base64_decode(const unsigned char* _Memory, size_t 
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif

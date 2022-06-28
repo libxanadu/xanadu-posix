@@ -6,7 +6,6 @@
 #include <pthread.h>
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -34,7 +33,7 @@ _XPOSIXAPI_ int __xcall__ x_mutex_trylock(x_mutex_t* _Mutex);
 _XPOSIXAPI_ void __xcall__ x_mutex_unlock(x_mutex_t* _Mutex);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

@@ -32,7 +32,6 @@
 #endif
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -93,6 +92,13 @@ typedef			int			pid_t;
 typedef 		void*			HANDLE;
 #endif
 #define 		X_INVALID_HANDLE	((HANDLE)(-1))
+
+
+
+// X-Series type definition : HWND
+#if !defined(XANADU_SYSTEM_WINDOWS)
+typedef 		void*			HWND;
+#endif
 
 
 
@@ -204,6 +210,5 @@ typedef 	x_llong_t			x_time_type;
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif

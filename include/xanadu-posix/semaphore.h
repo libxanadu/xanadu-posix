@@ -7,7 +7,6 @@
 #include <semaphore.h>
 #endif
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -50,7 +49,7 @@ _XPOSIXAPI_ int __xcall__ x_semaphore_destroy(x_semaphore_t* _Handle);
 _XPOSIXAPI_ int __xcall__ x_semaphore_close(x_semaphore_t* _Handle);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

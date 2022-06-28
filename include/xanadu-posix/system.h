@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -117,8 +116,6 @@ _XPOSIXAPI_ const char* __xcall__ x_system_config_directory(void);
 
 
 
-
 XANADU_CXX_EXTERN_END
-
 
 #endif

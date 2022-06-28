@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -64,6 +63,5 @@ _XPOSIXAPI_ unsigned long long __xcall__ x_endian_network_to_host_64(unsigned lo
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif

@@ -98,6 +98,26 @@ _XPOSIXAPI_ int __xcall__ x_posix_memcmp(const void* _Buf1, const void* _Buf2, s
 	return memcmp(_Buf1, _Buf2, _Size);
 }
 
+// posix : memrev
+_XPOSIXAPI_ void* __xcall__ x_posix_memrev(void* _Memory, size_t _Size)
+{
+	char*		vMemory = (char*)_Memory;
+	size_t 		vLength = _Size >> 1;
+	size_t 		vLeft = 0;
+	size_t 		vRight = vLength - 1;
+	char 		vTemp = 0;
+	if(vLength)
+	{
+		for(; vLeft != vRight; ++vLeft, --vRight)
+		{
+			vTemp = vMemory[vLeft];
+			vMemory[vLeft] = vMemory[vRight];
+			vMemory[vRight] = vTemp;
+		}
+	}
+	return vMemory;
+}
+
 
 
 
@@ -153,4 +173,24 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_posix_wmemrchr(const wchar_t* _Buf, wchar
 _XPOSIXAPI_ int __xcall__ x_posix_wmemcmp(const wchar_t* _Buf1, const wchar_t* _Buf2, size_t _Size)
 {
 	return wmemcmp(_Buf1, _Buf2, _Size);
+}
+
+// posix : wmemrev
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wmemrev(wchar_t* _Memory, size_t _Size)
+{
+	wchar_t*	vMemory = (wchar_t*)_Memory;
+	size_t 		vLength = _Size >> 1;
+	size_t 		vLeft = 0;
+	size_t 		vRight = vLength - 1;
+	wchar_t 	vTemp = 0;
+	if(vLength)
+	{
+		for(; vLeft != vRight; ++vLeft, --vRight)
+		{
+			vTemp = vMemory[vLeft];
+			vMemory[vLeft] = vMemory[vRight];
+			vMemory[vRight] = vTemp;
+		}
+	}
+	return vMemory;
 }

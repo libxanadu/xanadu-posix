@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -85,7 +84,7 @@ _XPOSIXAPI_ int __xcall__ x_process_find_next(x_process_stream_t _Handle, x_proc
 _XPOSIXAPI_ int __xcall__ x_process_find_close(x_process_stream_t _Handle);
 
 
-XANADU_CXX_EXTERN_END
 
+XANADU_CXX_EXTERN_END
 
 #endif

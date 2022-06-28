@@ -3,7 +3,6 @@
 
 #include <xanadu-posix/header.h>
 
-
 XANADU_CXX_EXTERN_BEGIN
 
 
@@ -56,6 +55,5 @@ _XPOSIXAPI_ DWORD __xcall__ ntdll_NtResumeProcess(HANDLE _ProcessHandle);
 
 
 XANADU_CXX_EXTERN_END
-
 
 #endif
