@@ -1,6 +1,7 @@
 ﻿#include <xanadu-posix/socket.h>
 #include <xanadu-posix/string.h>
 #include <xanadu-posix/system.h>
+#include <xanadu-posix/memory.h>
 #include <errno.h>
 #if defined(XANADU_SYSTEM_WINDOWS)
 #include <mstcpip.h>
@@ -18,6 +19,35 @@
 _XPOSIXAPI_ struct hostent* __xcall__ x_socket_get_host_by_name(const char* _Name)
 {
 	return gethostbyname(_Name);
+}
+
+// posix : gethostname
+_XPOSIXAPI_ int __xcall__ x_socket_get_host_name(char* _Name, size_t _Length)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	return gethostname(_Name, (int)_Length);
+#else
+	return gethostname(_Name, _Length);
+#endif
+}
+
+// posix : sethostname
+_XPOSIXAPI_ int __xcall__ x_socket_set_host_name(const char* _Name, size_t _Length)
+{
+#if defined(XANADU_SYSTEM_WINDOWS)
+	char		vNameA[MAX_COMPUTERNAME_LENGTH + 1];
+	x_posix_memset(vNameA, 0, MAX_COMPUTERNAME_LENGTH + 1);
+	x_posix_strncpy(vNameA, _Name, _Length > MAX_COMPUTERNAME_LENGTH ? MAX_COMPUTERNAME_LENGTH : _Length);
+
+	// Applications using this function must have administrator rights.
+	if(SetComputerNameA(vNameA))
+	{
+		return 0;
+	}
+	return x_system_get_last_error();
+#else
+	return sethostname(_Name, _Length);
+#endif
 }
 
 // posix : socket
@@ -347,6 +377,68 @@ _XPOSIXAPI_ int __xcall__ x_socket_set_keepalive(x_socket_t _Socket, bool _KeepA
 }
 
 
+
+// Get a list of local IP addresses
+_XPOSIXAPI_ int __xcall__ x_socket_local_ip_list(char*** _IPAddressListPtr, x_size_t* _Size)
+{
+	struct hostent*		vHostList = NULL;
+	struct in_addr		vAddress;
+	char*			vString = NULL;
+	x_size_t 		vCount = 0;
+	x_size_t 		vIndex = 0;
+	char 			vHostName[XANADU_PATH_MAX];
+	int 			vSync = 0;
+
+	if(_IPAddressListPtr == NULL || _Size == NULL)
+	{
+		return EINVAL;
+	}
+
+	vSync = x_socket_get_host_name(vHostName, XANADU_PATH_MAX);
+	if (0 != vSync)
+	{
+		return vSync;
+	}
+
+	vHostList = x_socket_get_host_by_name(vHostName);
+	if (NULL == vHostList)
+	{
+		return x_system_get_last_error();
+	}
+
+	while(vHostList->h_addr_list[vCount])
+	{
+		++vCount;
+	}
+	*_IPAddressListPtr = (char**) x_posix_malloc(sizeof(char*) * (vCount + 1));
+	*_Size = vCount;
+	if(*_IPAddressListPtr == NULL)
+	{
+		return ENOMEM;
+	}
+	(*_IPAddressListPtr)[vCount] = NULL;
+
+	for (vIndex = 0; vIndex < vCount; ++vIndex)
+	{
+		x_posix_memcpy(&(vAddress.S_un.S_addr), vHostList->h_addr_list[vIndex], vHostList->h_length);
+		vString = x_socket_inet_ntoa(vAddress);
+		(*_IPAddressListPtr)[vIndex] = x_posix_strdup(vString);
+	}
+
+	return 0;
+}
+
+// Free list of local IP addresses
+_XPOSIXAPI_ void __xcall__ x_socket_free_ip_list(char** _IPAddressListPtr)
+{
+	x_size_t 	vSize = 0;
+	while(_IPAddressListPtr && _IPAddressListPtr[vSize])
+	{
+		x_posix_free(_IPAddressListPtr[vSize]);
+		++vSize;
+	}
+	x_posix_free(_IPAddressListPtr);
+}
 
 // Translate IP address from fabric
 _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _Address)

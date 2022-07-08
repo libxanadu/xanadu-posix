@@ -84,6 +84,9 @@ _XPOSIXAPI_ char* __xcall__ x_posix_strncat(char* _Str1, const char* _Str2, size
 // posix : strdup
 _XPOSIXAPI_ char* __xcall__ x_posix_strdup(const char* _String);
 
+// posix : strndup
+_XPOSIXAPI_ char* __xcall__ x_posix_strndup(const char* _String, size_t _Length);
+
 // posix : strupr
 _XPOSIXAPI_ char* __xcall__ x_posix_strupr(char* _String);
 
@@ -145,6 +148,9 @@ _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsncat(wchar_t* _Str1, const wchar_t* _S
 // posix : wcsdup
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsdup(const wchar_t* _String);
 
+// posix : wcsndup
+_XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsndup(const wchar_t* _String, size_t _Length);
+
 // posix : wcsupr
 _XPOSIXAPI_ wchar_t* __xcall__ x_posix_wcsupr(wchar_t* _String);
 
@@ -198,11 +204,11 @@ _XPOSIXAPI_ long double __xcall__ x_posix_strtold(const char* _String, char** _E
 // posix : strtol
 _XPOSIXAPI_ long __xcall__ x_posix_strtol(const char* _String, char** _EndPtr, int _Radix);
 
-// posix : strtoll
-_XPOSIXAPI_ long long __xcall__ x_posix_strtoll(const char* _String, char** _EndPtr, int _Radix);
-
 // posix : strtoul
 _XPOSIXAPI_ unsigned long __xcall__ x_posix_strtoul(const char* _String, char** _EndPtr, int _Radix);
+
+// posix : strtoll
+_XPOSIXAPI_ long long __xcall__ x_posix_strtoll(const char* _String, char** _EndPtr, int _Radix);
 
 // posix : strtoull
 _XPOSIXAPI_ unsigned long long __xcall__ x_posix_strtoull(const char* _String, char** _EndPtr, int _Radix);
@@ -230,24 +236,6 @@ _XPOSIXAPI_ const wchar_t* __xcall__ x_string_replace_wchar_t(wchar_t* _String, 
 /// \param ... : Depending on the format string, the function may expect a sequence of additional arguments
 /// \return : The formatted string pointer is returned if successful, and null if failed. Need to call x_posix_free() release
 _XPOSIXAPI_ char* __xcall__ x_string_format(const char* _Format, ...);
-
-
-
-/// Convert UTF-8 to UNICODE
-/// \param _UTF8 : A UTF-8 string ending in NULL
-/// \param _Unicode : Buffer for storing converted strings
-/// \param _WLength : Length of Unicode buffer
-/// \return : The number of bytes after conversion is returned on success and -1 on failure.
-/// \return : When the parameter \param _Unicode or \param _Length is null, the required memory length is returned
-_XPOSIXAPI_ int __xcall__ x_string_convert_utf8_to_unicode(const char* _UTF8, wchar_t* _Unicode, size_t _WLength);
-
-/// Convert UNICODE to UTF-8
-/// \param _Unicode : A Unicode string ending in NULL
-/// \param _UTF8 : Buffer for storing converted strings
-/// \param _ULength : Length of UTF8 buffer
-/// \return : The number of bytes after conversion is returned on success and -1 on failure.
-/// \return : When the parameter \param _UTF8 or \param _Length is null, the required memory length is returned
-_XPOSIXAPI_ int __xcall__ x_string_convert_unicode_to_utf8(const wchar_t* _Unicode, char* _UTF8, size_t _ULength);
 
 
 

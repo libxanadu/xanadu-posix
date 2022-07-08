@@ -35,6 +35,12 @@ typedef struct {
 // posix : gethostbyname
 _XPOSIXAPI_ struct hostent* __xcall__ x_socket_get_host_by_name(const char* _Name);
 
+// posix : gethostname
+_XPOSIXAPI_ int __xcall__ x_socket_get_host_name(char* _Name, size_t _Length);
+
+// posix : sethostname
+_XPOSIXAPI_ int __xcall__ x_socket_set_host_name(const char* _Name, size_t _Length);
+
 // posix : socket
 _XPOSIXAPI_ x_socket_t __xcall__ x_socket_open(int _Family, int _Type, int _Protocol);
 
@@ -112,6 +118,12 @@ _XPOSIXAPI_ bool __xcall__ x_socket_select_status(x_socket_t _Socket, bool* _Rea
 _XPOSIXAPI_ int __xcall__ x_socket_set_keepalive(x_socket_t _Socket, bool _KeepAlive, int _KeepIdle, int _KeepInterval, int _KeepCount);
 
 
+
+// Get a list of local IP addresses
+_XPOSIXAPI_ int __xcall__ x_socket_local_ip_list(char*** _IPAddressListPtr, x_size_t* _Size);
+
+// Free list of local IP addresses
+_XPOSIXAPI_ void __xcall__ x_socket_free_ip_list(char** _IPAddressListPtr);
 
 // Translate IP address from fabric
 _XPOSIXAPI_ char* __xcall__ x_socket_address_to_string(const struct sockaddr* _Address);
