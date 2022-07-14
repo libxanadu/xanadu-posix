@@ -420,7 +420,7 @@ _XPOSIXAPI_ int __xcall__ x_socket_local_ip_list(char*** _IPAddressListPtr, x_si
 
 	for (vIndex = 0; vIndex < vCount; ++vIndex)
 	{
-		x_posix_memcpy(&(vAddress.S_un.S_addr), vHostList->h_addr_list[vIndex], vHostList->h_length);
+		x_posix_memcpy(&(vAddress.s_addr), vHostList->h_addr_list[vIndex], vHostList->h_length);
 		vString = x_socket_inet_ntoa(vAddress);
 		(*_IPAddressListPtr)[vIndex] = x_posix_strdup(vString);
 	}
